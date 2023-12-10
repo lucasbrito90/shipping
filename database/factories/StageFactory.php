@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Enums\StageOptions;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,9 @@ class StageFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => StageOptions::Passivation->value,
+            'is_done' => $this->faker->boolean,
+            'when' => $this->faker->dateTime,
         ];
     }
 }

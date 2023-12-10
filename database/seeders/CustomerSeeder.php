@@ -9,10 +9,12 @@ use App\Models\CrumbsTrail;
 use App\Models\CrumbTrailStatus;
 use App\Models\Customer;
 use App\Models\Language;
+use App\Models\Piece;
 use App\Models\Product;
 use App\Models\Project;
 use App\Models\Sector;
 use App\Models\SocialMedia;
+use App\Models\Stage;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -36,6 +38,10 @@ class CustomerSeeder extends Seeder
                         Project::factory()
                             ->has(
                                 Product::factory()
+                                    ->has(
+                                        Piece::factory()
+                                        ->has(Stage::factory()->count(3), 'stages')
+                                        ,'pieces')
                                     ->has(
                                         CrumbsTrail::factory()
                                             ->has(Sector::factory()->count(3), 'sector')
